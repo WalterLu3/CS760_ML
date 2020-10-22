@@ -18,6 +18,8 @@
 \section*{CS 760 Homework 3 by Cheng-Wei Lu}
 
 \subsection*{Problem 3.1}
+I performed one-hot encoding on nominal feature "Class". Then I normalize all non-nominal features and add an intercept to every data.
+
 \subsubsection*{(a)}
 	I set the iteration number of $\hat{\theta}$ update to 1000. Step size = 1/20. I change the step size by multiply it with 3/4 every 50 iterations. The stop criteria is that when iteration number reaches 1000 or when the improvement for likelihood is less than $10^(-3)$, the parameter update will stop.
 
@@ -25,7 +27,8 @@
 	It took about 18 seconds for my computer to converge.
 \subsubsection*{(c)}
 	\begin{equation*}
-		\hat{\theta} =  \begin{pmatrix} 1.802\text{(class 1)}\\ 0.567 \text{(class 2)}\\ -0.645 \text{(class 3)}\\ 2.769 \text{(sex)}\\ -1.372\text{(age)}\\ -0.217\text{(siblings/spouses aboard)}\\-0.041\text{(parents/children aboard)}\\ 0.079\text{(fare)}\\-0.274\text{(intercept)} \end{pmatrix} 	\end{equation*}
+		\hat{\theta} =  \begin{pmatrix} 1.802\text{(class 1)}\\ 0.567 \text{(class 2)}\\ -0.645 \text{(class 3)}\\ 2.769 \text{(sex)}\\ -1.372\text{(age)}\\ -0.217\text{(siblings/spouses aboard)}\\-0.041\text{(parents/children aboard)}\\ 0.079\text{(fare)}\\-0.274\text{(intercept)} \end{pmatrix} 	
+		\end{equation*}
 	
 \subsubsection*{(d)}
 	likelihood $ = -390.5596 $
@@ -38,9 +41,32 @@
 \subsubsection*{(a)}
 	By the invariance property of MLE, we know that  $\hat{w} = x^T\hat{\theta}$.
 \subsubsection*{(b)}
-	Since  $\hat{\theta}  \xrightarrow[]{d} N(\theta^*, \frac{1}{N}I^{-1}_{\theta^{*}})$, and $\hat{w} = x^T\hat{\theta}$. It implies  $\hat{w}  \xrightarrow[]{d} N(\theta^*, \frac{1}{N}x^{T}I^{-1}_{\theta^{*}}x)$.
+	Since  $\hat{\theta}  \xrightarrow[]{d} N(\theta^*, \frac{1}{N}I^{-1}_{\theta^{*}})$, and $\hat{w} = x^T\hat{\theta}$. It implies  $\hat{w}  \xrightarrow[]{d} N(x^{T}\theta^*, \frac{1}{N}x^{T}I^{-1}_{\theta^{*}}x)$.
 
-	 
+\subsection*{Problem 3.3}
+	For this part, I create a data as follow:
+	\begin{equation*}
+		x=  \begin{pmatrix} 0\text{(class 1)}\\1 \text{(class 2)}\\ 0 \text{(class 3)}\\ 0 \text{(sex)}\\ 25\text{(age)}\\ 0\text{(siblings/spouses aboard)}\\0\text{(parents/children aboard)}\\ 50\text{(fare)}\\1\text{(intercept)} \end{pmatrix} 	\end{equation*}
 
+\subsubsection*{(a)}
+	According to the logistic prediction and setting odds > 1/2 as being able to survive,  I would not have survived the sinking because that I am a male and I am not young and rich enough. Just like in the movie - they have to let women and children escape first.
+	
+\subsubsection*{(b)}
+	According to the prediction, I have the probability of $9.158 \times 10*{-14}$ to survive, which is basically zero. The variance for odds is calculated according to $\frac{1}{N}x^{T}I^{-1}_{\theta^{*}}x$. The standard deviation is therefore $0.235$. The z value for $\alpha = 0.05$ is approximately 1.96, therefore the confidence interval for my odds of survival is $[-0.46, 0.46 ]$. If we only take into the account the nonnegativity probabilities, it would be $[0, 0.46 ]$.
+	
+\subsubsection*{(c)}
+	If we are talking about the odds, I think has big variance and have great uncertainty. But if we are talking about whether I would have died, it is certain because with 95 percent confidence, even the upper bound of my odds interval is still  less than 1/2, which is what I set as a standard to see if one would have died.
+	
+\subsection*{Problem 3.4}
+\subsubsection*{(a)}
+	\includegraphics[scale=0.5]{test}
+	
+\subsubsection*{(b)}
+	Based on the result above, sex, age, siblings/spouses aboard, parents/children aboard and fare are significant features.
+	
+\subsubsection*{(c)}
+	The most significant feature is sex according to the chi-square score. If I change my sex, I would still be dead. 
+	
+\includepdf[page={1,2,3,4,5,6}]{hw3_Appendix.pdf}
 \end{document}
 
